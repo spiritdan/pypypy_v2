@@ -50,4 +50,3 @@ if __name__ == "__main__":
 
     getlyric('https://y.qq.com/n/yqq/song/003OUlho2HcRHC.html')
 
-
