@@ -1,4 +1,4 @@
-again=True
+again=True;again2=3;print(again,again2)
 while again:
     a = input('是否继续？Y/N')
 
