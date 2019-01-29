@@ -1,8 +1,6 @@
-import requests,json,time
+import requests,json
 from urllib.request import quote
 import base64
-from PIL import Image
-
 def get_token(mobile):
     captcha_hash=validate_img(mobile)
     url = 'https://h5.ele.me/restapi/eus/login/mobile_send_code'
@@ -24,6 +22,7 @@ def get_token(mobile):
     data={"mobile":mobile,"captcha_value":input('输入验证码：'),"captcha_hash":captcha_hash,"scf":"ms"}
     #登录的参数。
     req=requests.post(url, headers=headers, data=json.dumps(data))
+    #token=json.loads(req.content)['validate_token']
     token=json.loads(req.content)['validate_token']
     print(req.status_code)
     print(req.text)
@@ -50,13 +49,14 @@ def login(mobile):
     # 登录的网址。
     data = {'mobile': mobile, 'validate_code': input('输入手机验证码：'), 'validate_token': token, 'scf': 'ms'}
 
+    print(data)
+    # 登录的参数。
     session.post(url, headers=headers, data=json.dumps(data))
     return session
 
 def find_foods(mobile):
     session=login(mobile)
     address="松鹤楼(观前店)"
-    #address=input('请输入查询地址：')
     url = 'https://www.ele.me/restapi/v2/pois?extras%5B%5D=count&geohash=wttdpcwn012n&keyword={0}&limit=20&type=nearby'.format(quote(address))
     res = session.get(url)
     json_value = json.loads(res.text)[0]
@@ -72,7 +72,6 @@ def find_foods(mobile):
         print(restaurant['name'])
         print(restaurant['address'])
         print('===============================')
-
 def validate_img(mobile):
     # 创建会话。
     headers = {
@@ -95,9 +94,7 @@ def validate_img(mobile):
     # 对图片请求,content取图片二进制数据值
     with open("code.jpg", "wb") as fh:
         fh.write(base64.b64decode(codeImg_str))
-    time.sleep(1)
-    im = Image.open('code.jpg')
-    im.show()
+
     return capture['captcha_hash']
 
 if __name__ == '__main__':
