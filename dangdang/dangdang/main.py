@@ -1,2 +1,2 @@
 from scrapy import cmdline
-cmdline.execute(['scrapy','crawl','bestsellers'])
+cmdline.execute(['scrapy','crawl','bestseller'])

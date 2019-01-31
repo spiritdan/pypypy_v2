@@ -14,9 +14,7 @@ BOT_NAME = 'dangdang'
 SPIDER_MODULES = ['dangdang.spiders']
 NEWSPIDER_MODULE = 'dangdang.spiders'
 
-FEED_URI='./data/%(name)s.csv'
-FEED_FORMAT='CSV'
-FEED_EXPORT_ENCODING='utf-8'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'dangdang (+http://www.yourdomain.com)'
 
@@ -66,9 +64,9 @@ DOWNLOAD_DELAY = 1
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'dangdang.pipelines.DangdangPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'dangdang.pipelines.DangdangPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
