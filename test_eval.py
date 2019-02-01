@@ -19,3 +19,12 @@ if num%20==0:
 else:
     page_num=int(num/20)+1
 print(page_num)
+a=1
+
+
+for i in range(3):
+    if i==2:
+        break
+    print(i)
+else:
+    print('3次结束')

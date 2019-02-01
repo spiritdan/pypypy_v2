@@ -36,7 +36,7 @@ class DuanpinSpider(scrapy.Spider):
         comments = bs.find('span', id='total-comments').text
         num = int(re.findall('\d+', comments)[0])
         if num % 20 == 0:
-            page_num = num / 20
+            page_num = int(num / 20)
         else:
             page_num = int(num / 20) + 1
         for i in range(1, page_num + 1):
