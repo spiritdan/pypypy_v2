@@ -52,7 +52,9 @@ class DuanpinSpider(scrapy.Spider):
         bs = bs4.BeautifulSoup(response.text, 'html.parser')
 
         list_comments = bs.find_all('li', class_='comment-item')
+        item['book'] =bs.find('div',id='content').text.strip()
         for comment in list_comments:
+
             item['user']=comment.find('span', class_='comment-info').find('a').text.strip()
             date_list = comment.find('span', class_='comment-info').find_all('span')
             if len(date_list) > 1:
