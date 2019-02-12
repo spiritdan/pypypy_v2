@@ -28,3 +28,15 @@ for i in range(3):
     print(i)
 else:
     print('3次结束')
+
+punches = ['石头','剪刀','布']
+print(punches[-3])
+
+a=[1,2,3]
+b=a
+a[1]=6
+print(b)
+
+b=a[:]
+a[0]=3
+print(b)
